@@ -17,6 +17,7 @@ public class AppTest
     {
         double ret = App.squareRoot(1);
         assertEquals(1.0, ret, 0.0f);
+        assertTrue(false);
 
         ret = App.squareRoot(4);
         assertEquals(2.0, ret, 0.0f);

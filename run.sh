@@ -1,2 +1,2 @@
 docker build -t calculator .
-docker run calculator:latest
+docker run -i calculator:latest

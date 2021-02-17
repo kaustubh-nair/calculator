@@ -15,7 +15,9 @@ pipeline {
 
         stage("Deploy") {
             steps {
-                echo "DEPLOY!!"
+                sh """docker build -f Dockerfile.production -t calculator ."""
+                sh """docker tag calculator:latest kaustubhnair/calculator:latest"""
+                sh """docker push kaustubhnair/calculator"""
             }
         }
 

@@ -7,6 +7,7 @@ pipeline {
                 //
             }
         }
+        /*
         stage('Test') {
             steps {
                 //
@@ -16,7 +17,7 @@ pipeline {
             steps {
                 //
             }
-        }
+        }*/
     }
 }
 

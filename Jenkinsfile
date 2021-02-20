@@ -13,11 +13,16 @@ pipeline {
             }
         }
 
-        stage("Deploy") {
+        stage("Push to Docker Hub") {
             steps {
                 sh """docker build -f Dockerfile.production -t calculator ."""
                 sh """docker tag calculator:latest kaustubhnair/calculator:latest"""
                 sh """docker push kaustubhnair/calculator"""
+            }
+        }
+        stage("Deploy to Ansible") {
+            steps {
+                ansiblePlaybook become: true, colorized: true, credentialsId: 'b2033d60-2fe1-47b4-9d92-320edc537849', disableHostKeyChecking: true, inventory: 'inventory', playbook: 'playbook.yml', sudoUser: null
             }
         }
 

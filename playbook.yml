@@ -1,0 +1,8 @@
+---
+- name: Deploy calculator
+  hosts: all
+  tasks:
+    - name: Pull calculator image
+      docker_image:
+        name: 'kaustubhnair/calculator:latest'
+        pull: yes

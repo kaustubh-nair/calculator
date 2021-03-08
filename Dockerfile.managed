@@ -5,7 +5,7 @@ RUN apt-get update -y
 # Install ssh
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y iptables python3-pip curl software-properties-common openssh-server sudo rsyslog --fix-missing
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 green
-RUN  echo 'green:green' | chpasswd
+# RUN  echo 'green:green' | chpasswd
 EXPOSE 22
 
 RUN sudo ln -s /usr/bin/python3 /usr/bin/python

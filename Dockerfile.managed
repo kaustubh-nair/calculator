@@ -3,10 +3,9 @@ FROM ubuntu:latest
 RUN apt-get update -y
 
 # Install ssh
-RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y python3-pip curl software-properties-common openssh-server sudo rsyslog --fix-missing
+RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y iptables python3-pip curl software-properties-common openssh-server sudo rsyslog --fix-missing
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 green
 RUN  echo 'green:green' | chpasswd
-RUN service ssh start
 EXPOSE 22
 
 RUN sudo ln -s /usr/bin/python3 /usr/bin/python
@@ -18,13 +17,12 @@ RUN sudo apt-get update -y
 RUN sudo apt-cache policy docker-ce
 RUN sudo apt-get install -y docker-ce
 RUN sudo pip3 install docker
-RUN sudo service docker start
+RUN sudo gpasswd -a green docker
 
 # Install filebeat
 RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-amd64.deb
 RUN sudo dpkg -i filebeat-7.11.1-amd64.deb
 COPY filebeat.yml /usr/share/filebeat/filebeat.yml
-RUN sudo service filebeat start
 
 ADD services.sh /usr/share/services.sh
 CMD ["bin/bash", "/usr/share/services.sh"]

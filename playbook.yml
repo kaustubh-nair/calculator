@@ -1,6 +1,6 @@
 ---
 - name: Deploy calculator
-  hosts: all
+  hosts: hosts
   tasks:
     - name: Pull calculator image
       docker_image:

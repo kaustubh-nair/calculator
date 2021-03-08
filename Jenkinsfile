@@ -22,6 +22,8 @@ pipeline {
         }
         stage("Deploy to Ansible") {
             steps {
+                sh """ssh-keygen -R 172.17.0.2"""
+                sh """ssh-keygen -R 172.17.0.3"""
                 ansiblePlaybook become: true, colorized: true, credentialsId: 'b2033d60-2fe1-47b4-9d92-320edc537849', disableHostKeyChecking: true, inventory: 'inventory', playbook: 'playbook.yml', sudoUser: null
             }
         }

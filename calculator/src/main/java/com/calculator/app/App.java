@@ -1,13 +1,13 @@
 package com.calculator.app;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import java.util.Scanner;
 import java.lang.Math;
 
-/**
- * Hello world!
- *
- */
 public class App
 {
+    static Logger log = LogManager.getLogger(App.class.getName());
     public static void main( String[] args )
     {
         Scanner scan = new Scanner(System.in);

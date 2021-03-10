@@ -7,4 +7,4 @@ RUN mvn -f /home/app/pom.xml clean install
 
 FROM openjdk:8-jre-alpine
 COPY --from=build /home/app/target/calculator-1.0-SNAPSHOT.jar /home/app/calculator.jar
-CMD ["java", "-cp", "target/calculator-1.0-SNAPSHOT.jar:./dependencies/log4j-core-2.14.0.jar:./dependencies/log4j-api-2.14.0.jar", "com.calculator.app.App"]
+CMD ["java", "-cp", "target/calculator-1.0-SNAPSHOT-jar-with-dependencies.jar", "com.calculator.app.App"]

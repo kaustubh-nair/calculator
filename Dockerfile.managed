@@ -4,15 +4,19 @@ RUN apt-get update -y
 
 # Install ssh
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y iptables python3-pip curl software-properties-common openssh-server sudo rsyslog --fix-missing
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 green
-# RUN  echo 'green:green' | chpasswd
+RUN adduser --disabled-password --gecos '' green
+RUN adduser green sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN  echo 'green:green' | chpasswd
+USER green
+# RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 green
 EXPOSE 22
 
 RUN sudo ln -s /usr/bin/python3 /usr/bin/python
 
 # Install docker
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-RUN add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+RUN sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 RUN sudo apt-get update -y
 RUN sudo apt-cache policy docker-ce
 RUN sudo apt-get install -y docker-ce
@@ -20,7 +24,7 @@ RUN sudo pip3 install docker
 RUN sudo gpasswd -a green docker
 
 # Install filebeat
-RUN curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-amd64.deb
+RUN sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.11.1-amd64.deb
 RUN sudo dpkg -i filebeat-7.11.1-amd64.deb
 COPY filebeat.yml /usr/share/filebeat/filebeat.yml
 

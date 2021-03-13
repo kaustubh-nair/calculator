@@ -1,10 +1,11 @@
 FROM maven:3.5-jdk-8-alpine as build
-COPY calculator/src /home/app/src
-COPY calculator/pom.xml /home/app
+COPY calculator/src/ /home/app/calculator/src/
+COPY calculator/pom.xml /home/app/calculator/
 WORKDIR /home/app
 
-RUN mvn -f /home/app/pom.xml clean install
+RUN mvn -f /home/app/calculator/pom.xml clean install
 
 FROM openjdk:8-jre-alpine
-COPY --from=build /home/app/target/calculator-1.0-SNAPSHOT.jar /home/app/calculator.jar
-CMD ["java", "-cp", "target/calculator-1.0-SNAPSHOT-jar-with-dependencies.jar", "com.calculator.app.App"]
+COPY --from=build /home/app/calculator/src/ /home/app/calculator/src
+COPY --from=build /home/app/calculator/target/calculator-1.0-SNAPSHOT-jar-with-dependencies.jar /home/app/calculator/target/calculator.jar
+-CMD ["java", "-cp", "target/calculator.jar", "com.calculator.app.App"]

@@ -32,4 +32,16 @@ public class AppTest
         ret = App.factorial(4);
         assertEquals(24.0, ret, 0.0f);
     }
+    @Test
+    public void testPower()
+    {
+        double ret = App.power(1,1);
+        assertEquals(1.0, ret, 0.0f);
+
+        ret = App.power(2, 2);
+        assertEquals(4.0, ret, 0.0f);
+
+        ret = App.power(4, 3);
+        assertEquals(64.0, ret, 0.0f);
+    }
 }

@@ -32,6 +32,15 @@ public class App
                 System.out.println("Square root of " + x + " is " + squareRoot(x) + " \n");
             if (choice == 2)
                 System.out.println("Factorial of " + x + " is " + factorial(x) + " \n");
+            if (choice == 4)
+            {
+                System.out.println( "Enter base" );
+                b = scan.nextInt();
+                System.out.println( "Enter exponent" );
+                x = scan.nextInt();
+                System.out.println(b + " to the power " + x + " is " + power(b, x) + " \n");
+
+            }
         }
     }
     public static double squareRoot(int number) {
@@ -60,6 +69,13 @@ public class App
         }
         logger.info("[RESULT - FACTORIAL] - " + result);
 
+        return result;
+    }
+
+    public static double power(int base, int exp) {
+        logger.info("[POWER] - " + base + " " + exp);
+        double result = Math.pow(base, exp);
+        logger.info("[RESULT - POWER] - " + result);
         return result;
     }
 }

@@ -28,7 +28,6 @@ RUN sudo curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebe
 RUN sudo dpkg -i filebeat-7.11.1-amd64.deb
 COPY filebeat.yml /usr/share/filebeat/filebeat.yml
 COPY filebeat.yml /etc/filebeat/filebeat.yml
-COPY docker.yml /etc/filebeat/modules.d/docker.yml
 
 ADD services.sh /usr/share/services.sh
 CMD ["bin/bash", "/usr/share/services.sh"]

@@ -8,4 +8,5 @@ RUN mvn -f /home/app/calculator/pom.xml clean install
 FROM openjdk:8-jre-alpine
 COPY --from=build /home/app/calculator/src/ /home/app/calculator/src
 COPY --from=build /home/app/calculator/target/calculator-1.0-SNAPSHOT-jar-with-dependencies.jar /home/app/calculator/target/calculator.jar
--CMD ["java", "-cp", "target/calculator.jar", "com.calculator.app.App"]
+WORKDIR /home/app/calculator
+CMD ["java", "-cp", "target/calculator.jar", "com.calculator.app.App"]

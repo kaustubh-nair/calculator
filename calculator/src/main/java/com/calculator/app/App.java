@@ -7,7 +7,7 @@ import java.lang.Math;
 
 public class App
 {
-    static Logger log = LogManager.getLogger(App.class.getName());
+    static Logger logger = LogManager.getLogger(App.class.getName());
     public static void main( String[] args )
     {
         Scanner scan = new Scanner(System.in);
@@ -31,6 +31,9 @@ public class App
         }
     }
     public static double squareRoot(int number) {
-        return Math.sqrt(number);
+        logger.info("[SQUAREROOT] - " + number);
+        double answer =  Math.sqrt(number);
+        logger.info("[RESULT-SQUAREROOT] - " + answer);
+        return answer;
     }
 }

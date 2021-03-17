@@ -32,6 +32,8 @@ public class App
                 System.out.println("Square root of " + x + " is " + squareRoot(x) + " \n");
             if (choice == 2)
                 System.out.println("Factorial of " + x + " is " + factorial(x) + " \n");
+            if (choice == 3)
+                System.out.println("Natural logarithm of " + x + " is " + logarithm(x) + " \n");
             if (choice == 4)
             {
                 System.out.println( "Enter base" );
@@ -78,4 +80,13 @@ public class App
         logger.info("[RESULT - POWER] - " + result);
         return result;
     }
+    public static double logarithm(int number) {
+        if (number < 0)
+        {
+            logger.error("[ERROR - INVALID_INPUT] - Input cannot be negative");
+            return 0;
+        }
+        return Math.log(number);
+    }
+
 }

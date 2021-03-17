@@ -44,4 +44,13 @@ public class AppTest
         ret = App.power(4, 3);
         assertEquals(64.0, ret, 0.0f);
     }
+    @Test
+    public void testLogarithm()
+    {
+        double ret = App.logarithm(1);
+        assertEquals(0.0, ret, 0.0f);
+
+        ret = App.logarithm(2);
+        assertEquals(0.693147, ret, 0.01f);
+    }
 }

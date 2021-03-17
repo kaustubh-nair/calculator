@@ -21,7 +21,7 @@ public class App
             if (choice == 0)
                 break;
             if (choice < 0)
-                logger.error("[ERROR - INVALID_INPUT] - Choice cannot be negatice");
+                logger.error("[ERROR - INVALID_INPUT] - Choice cannot be negative");
             if (choice != 4)
             {
                 System.out.println( "Enter number" );
@@ -30,6 +30,8 @@ public class App
 
             if (choice == 1)
                 System.out.println("Square root of " + x + " is " + squareRoot(x) + " \n");
+            if (choice == 2)
+                System.out.println("Factorial of " + x + " is " + factorial(x) + " \n");
         }
     }
     public static double squareRoot(int number) {
@@ -40,7 +42,24 @@ public class App
         }
         logger.info("[SQUAREROOT] - " + number);
         double answer =  Math.sqrt(number);
-        logger.info("[RESULT-SQUAREROOT] - " + answer);
+        logger.info("[RESULT - SQUAREROOT] - " + answer);
         return answer;
+    }
+
+    public static double factorial(int number) {
+        if (number < 0)
+        {
+            logger.error("[ERROR - INVALID_INPUT] - Input cannot be negative");
+            return 0;
+        }
+        double result = 1;
+
+        logger.info("[FACTORIAL] - " + number);
+        for (int factor = 2; factor <= number; factor++) {
+            result *= factor;
+        }
+        logger.info("[RESULT - FACTORIAL] - " + result);
+
+        return result;
     }
 }

@@ -20,6 +20,8 @@ public class App
             choice = scan.nextInt();
             if (choice == 0)
                 break;
+            if (choice < 0)
+                logger.error("[ERROR - INVALID_INPUT] - Choice cannot be negatice");
             if (choice != 4)
             {
                 System.out.println( "Enter number" );
@@ -31,6 +33,11 @@ public class App
         }
     }
     public static double squareRoot(int number) {
+        if (number < 0)
+        {
+            logger.error("[ERROR - INVALID_INPUT] - Input cannot be negative");
+            return 0;
+        }
         logger.info("[SQUAREROOT] - " + number);
         double answer =  Math.sqrt(number);
         logger.info("[RESULT-SQUAREROOT] - " + answer);
